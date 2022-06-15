@@ -1,7 +1,13 @@
 sudo: required
 
+language: 
+  - generic 
+
 services:
   - docker
 
 before_install:
   - docker build -t kishan/docker -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true kishan/docker npm run test
