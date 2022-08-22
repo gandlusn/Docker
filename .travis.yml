@@ -11,3 +11,16 @@ before_install:
 
 script:
   - docker run -e CI=true kishan/docker npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "WebServer"
+  env: "Webserver-env"
+  bucket_name: "elasticbeanstalk-us-east-1-224539251429"
+  bucket_path: "WebServer"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
+  
